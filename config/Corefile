@@ -1,5 +1,7 @@
 ehrich.home:53 {
-    log
+    log . {
+        class denial error
+    }
     errors
     reload 10s
     hosts /etc/coredns/ehrich.home.hosts ehrich.home {
@@ -7,12 +9,16 @@ ehrich.home:53 {
         fallthrough
     }
     forward ehrich.home 192.168.3.2 192.168.3.3
+    cache 120
 }
 
 .:53 {
-    log
+    log . {
+        class denial error
+    }
     errors
     reload 10s
     forward . 8.8.8.8 9.9.9.9
+    cache 120
 }
 
