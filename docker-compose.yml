@@ -7,8 +7,27 @@ services:
         expose:
             - '53'
             - '53/udp'
+            - '9153'
         ports:
             - '53:53'
             - '53:53/udp'
+            - '9153:9153'
         volumes:
             - './config:/etc/coredns'
+
+    prometheus:
+        image: prom/prometheus
+        restart: on-failure
+        expose:
+            - '9090'
+        ports:
+            - '9090:9090'
+        volumes:
+            - './prometheus/prometheus.yml:/etc/prometheus/prometheus.yml'
+
+    grafana:
+        image: grafana/grafana-enterprise
+        container_name: grafana
+        restart: unless-stopped
+        ports:
+        - '3000:3000'

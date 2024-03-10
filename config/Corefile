@@ -10,6 +10,7 @@ ehrich.home:53 {
     }
     forward ehrich.home 192.168.3.2 192.168.3.3
     cache 120
+    prometheus :9153
 }
 
 .:53 {
@@ -20,5 +21,6 @@ ehrich.home:53 {
     reload 10s
     forward . 8.8.8.8 9.9.9.9
     cache 120
+    prometheus :9153
 }
 
